@@ -1,0 +1,35 @@
+@startuml
+
+
+top to bottom direction
+
+
+class App
+
+
+package view {
+	
+	App -down-> GameGraphicView
+	App -down-> GameConsoleView
+
+
+	GameGraphicView -right-> javax.swing
+	GameConsoleView --> ConsoleView
+	
+	ConsoleView -left-> Console
+}
+
+package controller {
+	
+	class Logic
+
+	ConsoleView -down-> Logic
+	GameGraphicView -down-> Logic
+	
+	Logic --> model
+}
+
+package model {
+}
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+
+class App
+class GraphicView
+class ConsoleView
+class Model
+
+
+App --> GraphicView
+App --> ConsoleView
+GraphicView -right-> javax.swing
+ConsoleView -left-> Console
+GraphicView --> Model
+ConsoleView --> Model
+
+
+@enduml

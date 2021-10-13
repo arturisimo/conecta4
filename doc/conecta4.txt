@@ -1,0 +1,42 @@
+@startuml Conecta4
+
+
+
+title Secuencia versiones Conecta4
+
+state Conecta4 {
+
+state model {
+
+	state conecta4.model: Modelo vista y logica de procesamiento acoplados.
+
+}
+
+
+state model.view #ECEA58 {
+	
+	state conecta4.modelview #ECEA58: Desacoplar Vista utilizando Console.\nVista tiene el control de ejecucion de flujo de ejecucion.
+
+	state conecta4.mv.swing #ECEA58: 2 Modos de vista: Console y Graphic(swing).
+
+	conecta4.modelview --> conecta4.mv.swing
+}
+
+state model.view.controller #AF9EAF {
+	
+	state conecta4.mvc #AF9EAF: Capa Controller para acceder al Modelo\n. Vista > Controller > Model
+
+	state conecta4.mvc.ioc #AF9EAF: Inversion del control de flujo de ejecucion pasa de la vista a los controladores
+
+
+	conecta4.mvc --> conecta4.mvc.ioc
+
+}
+
+
+conecta4.model --> conecta4.modelview
+conecta4.mv.swing --> conecta4.mvc
+
+}
+
+@enduml

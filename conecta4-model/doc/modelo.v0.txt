@@ -1,0 +1,52 @@
+@startuml
+
+top to bottom direction
+
+Conecta4 *--> Board
+Conecta4 *--> "2" Player
+
+Player *--> "16" Colour
+
+Board *--> "32" Hole
+
+
+Player *--> Colour
+
+
+Hole o--> "0..1" Piece
+
+class Conecta4 {
+	board: Board
+	player: Player[]
+	+move()
+	+isWinner()
+}
+
+class Board {
+	hueco: Hole[]
+	+print()
+}
+
+class Player {
+	piece: List<Piece>
+	colour: Colour
+	+play()
+}
+
+class Piece {
+	color: Colour
+}
+
+class Hole {
+	coordinate: Integer[]
+	piece: Piece
+	+hasColour()
+}
+
+enum Colour {
+	WHITE,BLACK
+}
+
+
+
+@enduml
