@@ -1,67 +1,33 @@
 package org.cloud.apps.qa.controller;
 
-import org.cloud.apps.qa.model.Board;
-import org.cloud.apps.qa.model.Conecta4;
-import org.cloud.apps.qa.model.Player;
-import org.cloud.apps.qa.view.util.Msgs;
+import java.util.EnumMap;
 
-/**
- * Clase facade que llama a la logica de negocio
- */
+import org.cloud.apps.qa.model.Conecta4;
+import org.cloud.apps.qa.model.State;
+import org.cloud.apps.qa.model.StateValue;
+
 public class Logic {
 	
-    private Conecta4 game;
-    private PlayController playController;
-    private ResumeController resumeController;
-    private StartController startController;
-    
-    public Logic(Conecta4 game) {
-        this.game = game;
-        this.playController = new PlayController(game);
-        this.resumeController = new ResumeController(game);
-        this.startController = new StartController(game);
-    }
-	
-	public void initPlayers(String[] namePlayers) {
-		startController.initPlayers(namePlayers);
-	}
-    
-    public boolean checkPutPiece(Integer column) {
-		return playController.checkPutPiece(column);
-	}
-    
-    public boolean isEndGame(Player player) {
-		return playController.isEndGame(player);
-	}
+	    private Conecta4 game;
+	    private State state;
+	    private EnumMap<StateValue, Controller> controllers;
 
-	public void putPiece(Player player, Integer column) {
-		this.game.putPiece(player, column);
-	}
+	    public Logic() {
+	        this.state = new State();
+	        this.game = new Conecta4();
+	        this.controllers = new EnumMap<>(StateValue.class);
+	        this.controllers.put(StateValue.INITIAL, new StartController(this.game, this.state));
+	        this.controllers.put(StateValue.IN_GAME, new PlayController(this.game, this.state));
+	        this.controllers.put(StateValue.RESUME, new ResumeController(this.game, this.state));
+	        this.controllers.put(StateValue.EXIT, null);
+	    }
 
-	public Player[] getPlayers() {
-		return game.getPlayers();
-	}
+	    public Controller getController() {
+	        return this.controllers.get(this.state.getValueState());
+	    }
 
-	public String getEndMessage() {
-		return game.getWinner().map(winner -> String.format(Msgs.WINNER, winner.getName())).orElse(Msgs.NO_PIECES);
-	}
 
-	public Board getBoard() {
-		return game.getBoard();
-	}
 
-	public int getMaxOption() {
-		return Conecta4.COLUMNS -1;
-	}
-	
-	public int getNumPlayers() {
-		return Conecta4.NUM_PLAYERS;
-	}
-
-	public void reset() {
-		resumeController.reset(); 
-		
-	}
 		
     
     

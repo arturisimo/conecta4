@@ -13,7 +13,7 @@ public class Line {
 
 	public boolean isConecta4(Colour colour) {
 		String c4 = colour.name()+colour.name()+colour.name()+colour.name();
-		return Arrays.asList(holes).stream().map(hole -> hole.getPiece().map(Colour::name).orElse(" ")).collect(Collectors.joining()).contains(c4);
+		return Arrays.asList(holes).stream().map(Hole::toString).collect(Collectors.joining()).contains(c4);
 	}
 	
 }

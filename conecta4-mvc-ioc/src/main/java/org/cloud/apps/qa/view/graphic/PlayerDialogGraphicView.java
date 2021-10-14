@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import org.cloud.apps.qa.controller.Logic;
+import org.cloud.apps.qa.controller.StartController;
 import org.cloud.apps.qa.view.util.Constraints;
 import org.cloud.apps.qa.view.util.Msgs;
 
@@ -18,11 +19,10 @@ public class PlayerDialogGraphicView extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 8047384606282622229L;
 	private String[] players;
 	private JTextField[] inputs;
-	private Logic logic;
+	private FrameView frameView;
 	
-	public PlayerDialogGraphicView(Logic logic) {
+	public PlayerDialogGraphicView() {
 	    super();
-	    this.logic = logic;
 	    this.setLayout(new GridBagLayout());
 	    this.setSize(500,500);
 	}
@@ -31,8 +31,8 @@ public class PlayerDialogGraphicView extends JPanel implements ActionListener {
 		return players;
 	}
 
-	public void playersPanel() {
-		players = new String[logic.getNumPlayers()];
+	public void playersPanel(StartController startController) {
+		players = new String[startController.getNumPlayers()];
 	    
 	    inputs = new JTextField[players.length];
 	    JLabel[] labels = new JLabel[players.length];
@@ -55,6 +55,11 @@ public class PlayerDialogGraphicView extends JPanel implements ActionListener {
 		for (int i = 0; i < players.length; i++) {
 			players[i] = inputs[i].getText();
 		}
+	}
+
+	public void initGame(StartController startController) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

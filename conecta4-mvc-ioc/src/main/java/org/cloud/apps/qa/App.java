@@ -1,8 +1,10 @@
 package org.cloud.apps.qa;
 
+import org.cloud.apps.qa.controller.Controller;
+import org.cloud.apps.qa.controller.Logic;
 import org.cloud.apps.qa.model.Conecta4;
 import org.cloud.apps.qa.model.ModeGame;
-import org.cloud.apps.qa.view.GameView;
+import org.cloud.apps.qa.view.ControllerVisitor;
 import org.cloud.apps.qa.view.console.GameConsoleView;
 import org.cloud.apps.qa.view.graphic.GameGraphicView;
 import org.cloud.apps.qa.view.util.Console;
@@ -14,15 +16,20 @@ public class App {
 	
 	Conecta4 game;
 	
-	public static void main(String[] args) {
-
-		String mode = getModeGame();
-		GameView gameView = factoryGames(ModeGame.get(mode));
+    public static void main(String[] args) {
 		
-		do {
-			gameView.init();
-	        gameView.play();
-	    } while (gameView.isResumeGame());
+		Logic logic = new Logic();
+		
+		String mode = getModeGame();
+		ControllerVisitor gameView = factoryGames(ModeGame.get(mode));
+		
+		Controller controller;
+	    do {
+            controller = logic.getController();
+            if (controller != null)
+                controller.accept(gameView);
+	    } while (controller != null);
+	    
 	}
 	
 	private static String getModeGame() {
@@ -34,7 +41,7 @@ public class App {
 	/**
 	 * violacion OPEN/CLOSE Principle
 	 */
-	private static GameView factoryGames(ModeGame mode) {
+	private static ControllerVisitor factoryGames(ModeGame mode) {
 		Conecta4 conecta4 = new Conecta4();
 		
 		switch (mode) {

@@ -9,4 +9,6 @@ Proyecto ejemplo: TicTacToe
 
 Proyecto de compis
 
-https://github.com/torrespro/connect4/
+* https://github.com/rdszpecht/Connect4
+* https://github.com/hugohg34/conecta4
+* https://github.com/torrespro/connect4

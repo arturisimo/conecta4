@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import org.cloud.apps.qa.controller.Logic;
+import org.cloud.apps.qa.controller.PlayController;
 import org.cloud.apps.qa.view.util.Constraints;
 import org.cloud.apps.qa.view.util.Msgs;
 
@@ -20,11 +21,11 @@ public class PlayGraphicView  extends JPanel implements ActionListener {
 	private JTextField input;
 	private JButton button;
 	private Integer column;
-	private Logic logic;
 	
-	public PlayGraphicView(Logic logic) {
+	private PlayController playController;
+	
+	public PlayGraphicView() {
 	    super();
-	    this.logic = logic;
 	    this.setLayout(new GridBagLayout());
 	    this.setSize(500,500);
 	    input = new JTextField(1);
@@ -38,13 +39,13 @@ public class PlayGraphicView  extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		try {
 			column = Integer.parseInt(input.getText());
-			if (0 > column || column > logic.getMaxOption()) {
+			if (0 > column || column > playController.getMaxOption()) {
 				column = null;
-				JOptionPane.showMessageDialog(null, String.format(Msgs.NUMBER_ERROR, 0, logic.getMaxOption()), "ERROR", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, String.format(Msgs.NUMBER_ERROR, 0, playController.getMaxOption()), "ERROR", JOptionPane.WARNING_MESSAGE);
 			}
 			input.setText("");
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, String.format(Msgs.NUMBER_ERROR, 0, logic.getMaxOption()), "ERROR", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, String.format(Msgs.NUMBER_ERROR, 0, playController.getMaxOption()), "ERROR", JOptionPane.WARNING_MESSAGE);
 		}
 		
 	}
@@ -55,6 +56,11 @@ public class PlayGraphicView  extends JPanel implements ActionListener {
 
 	public void setColumn(Integer column) {
 		this.column = column;
+	}
+
+	public void play(PlayController playController2) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

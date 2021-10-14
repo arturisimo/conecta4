@@ -1,5 +1,8 @@
 package org.cloud.apps.qa.view.console;
 
+import org.cloud.apps.qa.controller.PlayController;
+import org.cloud.apps.qa.controller.ResumeController;
+import org.cloud.apps.qa.controller.StartController;
 import org.cloud.apps.qa.model.Conecta4;
 import org.cloud.apps.qa.view.GameView;
 
@@ -12,32 +15,26 @@ public class GameConsoleView extends GameView {
 	 
 	public GameConsoleView(Conecta4 game) {
         super(game);
-        this.playerView = new PlayerDialogView(logic);
-        this.playView = new PlayView(logic);
-        this.resumeView = new ResumeDialogView(logic);
-	}
-	
-	
-	@Override
-	public void init() {
-		logic.reset();
-		String[] namePlayers = new String[logic.getNumPlayers()];
-		for (int i = 0; i < namePlayers.length; i++) {
-			namePlayers[i] = playerView.getPlayerName(i);
-		}	
-		logic.initPlayers(namePlayers);
-		
+        this.playerView = new PlayerDialogView();
+        this.playView = new PlayView();
+        this.resumeView = new ResumeDialogView();
 	}
 	
 	@Override
-	public void play() {
-		playView.play();
+	public void visit(StartController startController) {
+		playerView.initGame(startController);
 	}
 
-	
+
 	@Override
-	public boolean isResumeGame() {
-		return resumeView.resumeGame();
+	public void visit(PlayController playController) {
+		playView.play(playController);
+	}
+
+
+	@Override
+	public void visit(ResumeController resumeController) {
+		resumeView.resume(resumeController);
 	}
 	
 	
