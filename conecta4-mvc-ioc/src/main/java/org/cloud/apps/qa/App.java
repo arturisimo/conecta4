@@ -38,14 +38,13 @@ public class App {
 	 * violacion OPEN/CLOSE Principle
 	 */
 	private static ControllerVisitor factoryGames(ModeGame mode) {
-		Conecta4 conecta4 = new Conecta4();
 		
 		switch (mode) {
 		case G:
-			return new GameGraphicView(conecta4);
+			return new GameGraphicView();
 		case C:
 		default:	
-			return new GameConsoleView(conecta4);
+			return new GameConsoleView();
 		}
 	}
 	

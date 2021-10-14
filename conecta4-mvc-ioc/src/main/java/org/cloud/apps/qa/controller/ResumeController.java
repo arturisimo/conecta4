@@ -11,7 +11,8 @@ public class ResumeController extends Controller {
 	}
 	
 	public void reset() {
-		game = null;
+		this.game.reset();
+	    this.state.reset();
 	}
 	
 	@Override

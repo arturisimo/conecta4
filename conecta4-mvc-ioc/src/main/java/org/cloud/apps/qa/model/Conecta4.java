@@ -52,5 +52,9 @@ public class Conecta4 {
 	public Optional<Player> getWinner() {
 		return winner;
 	}
+	public void reset() {
+		this.board.reset();
+        this.winner = Optional.empty();
+	}
 	
 }

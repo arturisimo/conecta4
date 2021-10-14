@@ -12,9 +12,8 @@ package view {
 	App -down-> GameGraphicView
 	App -down-> GameConsoleView
 
-	GameGraphicView --|> GameView
-	GameConsoleView --|> GameView
-	GameView ..|> ControllerVisitor
+	GameGraphicView ..|> ControllerVisitor
+	GameConsoleView ..|> ControllerVisitor
 
 	interface ControllerVisitor << visitor >> {
 		visit(Controller)

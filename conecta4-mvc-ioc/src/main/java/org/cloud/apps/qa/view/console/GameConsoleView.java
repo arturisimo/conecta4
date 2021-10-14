@@ -3,18 +3,16 @@ package org.cloud.apps.qa.view.console;
 import org.cloud.apps.qa.controller.PlayController;
 import org.cloud.apps.qa.controller.ResumeController;
 import org.cloud.apps.qa.controller.StartController;
-import org.cloud.apps.qa.model.Conecta4;
-import org.cloud.apps.qa.view.GameView;
+import org.cloud.apps.qa.view.ControllerVisitor;
 
-public class GameConsoleView extends GameView {
+public class GameConsoleView implements ControllerVisitor {
 	
 	private PlayerDialogView playerView;
 	private PlayView playView;
 	private ResumeDialogView resumeView;
 	
 	 
-	public GameConsoleView(Conecta4 game) {
-        super(game);
+	public GameConsoleView() {
         this.playerView = new PlayerDialogView();
         this.playView = new PlayView();
         this.resumeView = new ResumeDialogView();

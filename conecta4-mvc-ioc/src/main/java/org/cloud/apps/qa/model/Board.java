@@ -13,12 +13,7 @@ public class Board {
 	public Board(Integer rows, Integer columns) {
 		this.rows = rows;
 		this.columns = columns;
-		this.holes = new Hole[rows][columns];
-		for (int x=0; x < this.holes.length; x++) {
-			  for (int y=0; y < holes[x].length; y++) {
-				  this.holes[x][y] = new Hole();
-			  }
-		}
+		this.reset();
 	}
 	
 	public Hole[][] getHoles() {
@@ -86,6 +81,15 @@ public class Board {
 	
 	public Hole[] getRow(Integer idx) {
 		return holes[idx];
+	}
+
+	public void reset() {
+		this.holes = new Hole[rows][columns];
+		for (int x=0; x < this.holes.length; x++) {
+			  for (int y=0; y < holes[x].length; y++) {
+				  this.holes[x][y] = new Hole();
+			  }
+		}
 	}
 	
 }

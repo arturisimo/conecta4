@@ -6,13 +6,12 @@ import javax.swing.JOptionPane;
 import org.cloud.apps.qa.controller.PlayController;
 import org.cloud.apps.qa.controller.ResumeController;
 import org.cloud.apps.qa.controller.StartController;
-import org.cloud.apps.qa.model.Conecta4;
 import org.cloud.apps.qa.model.Player;
-import org.cloud.apps.qa.view.GameView;
+import org.cloud.apps.qa.view.ControllerVisitor;
 import org.cloud.apps.qa.view.util.Constraints;
 import org.cloud.apps.qa.view.util.Msgs;
 
-public class GameGraphicView extends GameView { 
+public class GameGraphicView implements ControllerVisitor { 
 	
 	private PlayGraphicView playView;
 	private PlayerDialogGraphicView playerView;
@@ -20,8 +19,7 @@ public class GameGraphicView extends GameView {
 	private FrameView frameView;
 	private BoardGraphicView boardView;
 	
-	public GameGraphicView(Conecta4 game) {
-		super(game);
+	public GameGraphicView() {
 		this.frameView = new FrameView();
 		this.playerView = new PlayerDialogGraphicView();
 		this.playView = new PlayGraphicView();

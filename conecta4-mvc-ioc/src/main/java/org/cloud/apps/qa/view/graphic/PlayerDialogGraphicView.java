@@ -18,7 +18,6 @@ public class PlayerDialogGraphicView extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 8047384606282622229L;
 	private String[] players;
 	private JTextField[] inputs;
-	private FrameView frameView;
 	
 	public PlayerDialogGraphicView() {
 	    super();
