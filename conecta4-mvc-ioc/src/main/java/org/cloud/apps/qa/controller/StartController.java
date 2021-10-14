@@ -18,14 +18,14 @@ public class StartController extends Controller {
 	public int getNumPlayers() {
 		return Conecta4.NUM_PLAYERS;
 	}
-
+	
+	public Board getBoard() {
+		return game.getBoard();
+	}
+	
 	@Override
 	public void accept(ControllerVisitor gameView) {
 		gameView.visit(this);
-	}
-
-	public Board getBoard() {
-		return game.getBoard();
 	}
 
 }

@@ -1,0 +1,70 @@
+@startuml
+
+
+top to bottom direction
+
+
+class App << client >>
+
+
+package view {
+	
+	App -down-> GameGraphicView
+	App -down-> GameConsoleView
+
+	GameGraphicView --|> GameView
+	GameConsoleView --|> GameView
+	GameView ..|> ControllerVisitor
+
+	interface ControllerVisitor << visitor >> {
+		visit(Controller)
+	}
+
+}
+
+package controller {
+	
+	App -down-> Logic
+	
+	GameConsoleView -down-> Logic
+	GameGraphicView -down-> Logic
+
+	Logic --> Controller
+	Controller --> State
+
+	Controller --> model
+	
+	State --> StateValue
+	Logic --> State
+
+	class Controller << element >> {
+		accept(ControllerVisitor)
+		nextState()
+	}
+	
+
+	class Logic << object structure >> {
+		Conecta4 game
+	    State state
+	    EnumMap<StateValue, Controller> controllers
+	    getController()
+	}
+
+	class State{
+		reset()
+		next()
+	}
+
+	enum StateValue {
+    INITIAL,
+    IN_GAME,
+    RESUME,
+    EXIT
+	}
+
+}
+
+package model {
+}
+
+@enduml

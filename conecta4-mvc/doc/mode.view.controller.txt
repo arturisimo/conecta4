@@ -22,6 +22,8 @@ package view {
 package controller {
 	
 	class Logic
+	enum State{
+	}
 
 	ConsoleView -down-> Logic
 	GameGraphicView -down-> Logic

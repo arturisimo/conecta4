@@ -14,9 +14,7 @@ public class App {
 	
 	private static final Console CONSOLE = Console.getInstance();
 	
-	Conecta4 game;
-	
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 		
 		Logic logic = new Logic();
 		
@@ -26,8 +24,7 @@ public class App {
 		Controller controller;
 	    do {
             controller = logic.getController();
-            if (controller != null)
-                controller.accept(gameView);
+            if (controller != null) controller.accept(gameView);
 	    } while (controller != null);
 	    
 	}
@@ -37,7 +34,6 @@ public class App {
 		return CONSOLE.readLine(ModeGame.G.name(),ModeGame.C.name());
 	}
 
-	
 	/**
 	 * violacion OPEN/CLOSE Principle
 	 */

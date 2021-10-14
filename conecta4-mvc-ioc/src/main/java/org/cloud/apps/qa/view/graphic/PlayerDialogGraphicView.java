@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.cloud.apps.qa.controller.Logic;
 import org.cloud.apps.qa.controller.StartController;
 import org.cloud.apps.qa.view.util.Constraints;
 import org.cloud.apps.qa.view.util.Msgs;
