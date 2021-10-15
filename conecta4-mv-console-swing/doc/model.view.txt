@@ -1,17 +1,42 @@
 @startuml
 
-class App
+allowmixing
+
+class App {
+	factoryGames(ModeGame)
+}
+
+note right of [App] : "Patron factory method"
+
+App --> ModeGame
+
 class GraphicView
 class ConsoleView
-class Model
-
+enum ModeGame {
+	G,C
+}
 
 App --> GraphicView
 App --> ConsoleView
-GraphicView -right-> javax.swing
+
+
+GraphicView  ..|> GameView
+ConsoleView ..|> GameView 
+
+interface GameView {
+	init()
+	play()
+	isResumeGame()
+}
+	
+package model	
+
+
+GraphicView -down-> javax.swing
 ConsoleView -left-> Console
-GraphicView --> Model
-ConsoleView --> Model
+Console -down-> java.io
+GameView --> model
+
 
 
 @enduml

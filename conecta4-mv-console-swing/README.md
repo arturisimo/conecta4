@@ -4,6 +4,12 @@ Modelo y vista no puede estar acoplados. Se desacoplan para que puedan existir d
 
 La vista tiene el control del flujo de ejecución, hace uso del modelo.
 
-Se hace uso del patron factory en vez del template method del ejemplo. 
+Se hace uso del patron **factory method** para instanciar la vista en función de la selección tipo de juego: Gráfica o Console 
+
+
+## Factory method
+
+Factory Method sugiere que, en lugar de llamar al operador new para construir objetos directamente, se invoque a un **método fábrica**. No te preocupes: los objetos
+se siguen creando a través del operador new , pero se invocan desde el método fábrica
 
 ![Modelo Vista](doc/model.view.png)
