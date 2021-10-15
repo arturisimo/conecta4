@@ -1,0 +1,46 @@
+@startuml
+
+allowmixing
+
+note right of [Conecta4] : "Patron template method"
+
+
+class GraphicView
+class ConsoleView
+
+
+abstract Conecta4 {
+ 	GameView:createView()
+}
+
+class ConsoleConecta4 << client >> {
+ 	createView(): ConsoleView
+}
+
+class GraphicConecta4 << client >>{
+	createView(): GraphicView
+}
+
+ConsoleConecta4 --|> Conecta4
+GraphicConecta4 --|> Conecta4
+
+ConsoleConecta4 --> ConsoleView
+GraphicConecta4 --> GraphicView
+
+GraphicView  ..|> GameView
+ConsoleView ..|> GameView 
+
+interface GameView {
+	init()
+	play()
+	isResumeGame()
+}
+	
+package model	
+
+
+GameView --> model
+
+
+
+@enduml
