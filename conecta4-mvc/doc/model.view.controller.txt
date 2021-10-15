@@ -1,0 +1,66 @@
+@startuml
+
+
+top to bottom direction
+
+
+class App
+
+
+package view {
+	
+	App -down-> GameGraphicView
+	App -down-> GameConsoleView
+
+	GameGraphicView --|> GameView
+	GameConsoleView --|> GameView
+
+	abstract class GameView {
+		Conecta4: game
+		Logic: logic
+		init()
+		play()
+		isResumeGame()
+	}
+
+	abstract class ConsoleView {
+		Console: CONSOLE
+	}
+	
+	GameGraphicView --> javax.swing
+	GameConsoleView --> ConsoleView
+	
+	ConsoleView --> Console
+	Console --> java.io
+}
+
+package controller {
+	
+	class Logic
+	note left of [Logic] : "Patron fachada"
+	
+
+	GameView --> Logic
+	
+	Logic --> PlayController
+	Logic --> ResumeController
+	Logic --> StartController
+	
+	Controller --> model 
+	
+	StartController --|> Controller 
+	PlayController --|> Controller
+	ResumeController --|> Controller
+	
+	abstract class Controller {
+		Conecta4: game
+		PlayController: playController
+    	ResumeController: resumeController
+    	StartController:startController
+	}
+}
+
+package model {
+}
+
+@enduml

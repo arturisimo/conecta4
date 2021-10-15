@@ -12,6 +12,8 @@ Conecta4 o--> "0..1" Winner
 GameView -right-> Console
 BoardView --> Board
 BoardView -left-> Console
+Console --> Console
+note right of [Console] : "Console tiene una unica \ninstancia de acceso global:\n Console.getInstance()"
 
 Player *--> "16" Colour
 Winner -up-|> Player
@@ -57,12 +59,14 @@ class Line{
 Board *--> Line
 
 class Console{
-BufferedReader: bufferedReader
-readLine()
-readIntInRange()
-println()
-print()
-}
+	BufferedReader: bufferedReader
+	-Console:instance
+	getInstance()
+	readLine()
+	readIntInRange()
+	println()
+	print()
+	}
 class Winner
 
 class Player {

@@ -5,9 +5,6 @@ import org.cloud.apps.qa.model.Conecta4;
 import org.cloud.apps.qa.model.Player;
 import org.cloud.apps.qa.view.util.Msgs;
 
-/**
- * Clase facade que llama a la logica de negocio
- */
 public class Logic {
 	
     private Conecta4 game;
