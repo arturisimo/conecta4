@@ -2,7 +2,6 @@ package org.cloud.apps.qa;
 
 import org.cloud.apps.qa.controller.Controller;
 import org.cloud.apps.qa.controller.Logic;
-import org.cloud.apps.qa.model.Conecta4;
 import org.cloud.apps.qa.model.ModeGame;
 import org.cloud.apps.qa.view.ControllerVisitor;
 import org.cloud.apps.qa.view.console.GameConsoleView;
@@ -47,6 +46,5 @@ public class App {
 			return new GameConsoleView();
 		}
 	}
-	
-	
+
 }

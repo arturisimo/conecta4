@@ -23,11 +23,12 @@ public class PlayGraphicView  extends JPanel implements ActionListener {
 	
 	private PlayController playController;
 	
-	public PlayGraphicView() {
+	public PlayGraphicView(PlayController playController) {
 	    super();
+	    this.playController = playController;
 	    this.setLayout(new GridBagLayout());
 	    this.setSize(500,500);
-	    input = new JTextField(1);
+	    this.input = new JTextField(1);
 		this.add(input, new Constraints(0, 2, 1, 1));
 	    this.button = new JButton(Msgs.ACCEPT);
 	    this.add(button, new Constraints(0, 3, 1, 1));

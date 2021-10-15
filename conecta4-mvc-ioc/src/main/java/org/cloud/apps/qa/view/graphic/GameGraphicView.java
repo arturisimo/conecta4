@@ -22,8 +22,7 @@ public class GameGraphicView implements ControllerVisitor {
 	public GameGraphicView() {
 		this.frameView = new FrameView();
 		this.playerView = new PlayerDialogGraphicView();
-		this.playView = new PlayGraphicView();
-        this.resumeView = new ResumeDialogGraphicView();
+		this.resumeView = new ResumeDialogGraphicView();
         this.boardView = new BoardGraphicView();
 	}
 
@@ -31,13 +30,13 @@ public class GameGraphicView implements ControllerVisitor {
 	@Override
 	public void visit(StartController startController) {
 		
-		this.frameView.removeAll();
 		playerView.playersPanel(startController);
 		frameView.getContentPane().add(playerView, new Constraints(0, 1, 1, 1));
 		frameView.setVisible(true);
 		String[] namePlayers;
 		do {
 			namePlayers = playerView.getPlayers();
+			sleep();
         } while (namePlayers[0]==null);
 		
 		playerView.removeAll();
@@ -56,6 +55,7 @@ public class GameGraphicView implements ControllerVisitor {
 		Player[] players = playController.getPlayers();
 		Player turnPlayer;
 		int turn = 0;
+		this.playView = new PlayGraphicView(playController);
 		do {
 			turnPlayer = players[turn];
 			String turnMessage = String.format(Msgs.TURN, turnPlayer.getName(), turnPlayer.getColour(), playController.getMaxOption());
@@ -66,6 +66,7 @@ public class GameGraphicView implements ControllerVisitor {
 			Integer column; 
 			do {
 				column = playView.getColumn();
+				sleep();
 			} while (column==null);
 			
 			playView.setColumn(null);
@@ -79,7 +80,7 @@ public class GameGraphicView implements ControllerVisitor {
 				playView.remove(panelTurn);
 			}
 		} while (!playController.isEndGame(turnPlayer));
-		
+		playController.nextState();
 		JOptionPane.showMessageDialog(null, playController.getEndMessage(), "FIN", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
@@ -96,6 +97,18 @@ public class GameGraphicView implements ControllerVisitor {
 
 	@Override
 	public void visit(ResumeController resumeController) {
-		resumeView.resume(resumeController);
+		if (resumeView.resume(resumeController)) {
+			boardView.removeAll();
+			playView.removeAll();
+			frameView.removeAll();
+			frameView.setVisible(true);
+		}
 	}	
+	
+	private void sleep() {
+		try {
+			Thread.sleep(1);
+		} catch (Exception e) {
+		}
+	}
 }

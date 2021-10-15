@@ -10,7 +10,6 @@ public class GameConsoleView implements ControllerVisitor {
 	private PlayerDialogView playerView;
 	private PlayView playView;
 	private ResumeDialogView resumeView;
-	
 	 
 	public GameConsoleView() {
         this.playerView = new PlayerDialogView();
@@ -23,18 +22,14 @@ public class GameConsoleView implements ControllerVisitor {
 		playerView.initGame(startController);
 	}
 
-
 	@Override
 	public void visit(PlayController playController) {
 		playView.play(playController);
 	}
 
-
 	@Override
 	public void visit(ResumeController resumeController) {
 		resumeView.resume(resumeController);
 	}
-	
-	
+		
 }
-	

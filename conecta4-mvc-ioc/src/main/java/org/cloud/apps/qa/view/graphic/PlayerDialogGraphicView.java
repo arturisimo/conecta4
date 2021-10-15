@@ -44,8 +44,7 @@ public class PlayerDialogGraphicView extends JPanel implements ActionListener {
 		JButton button = new JButton(Msgs.ACCEPT);
 	    this.add(button, new Constraints(0, 5, 1, 1));
 	    button.addActionListener(this);
-	    this.setVisible(true);
-		
+	    startController.nextState();
 	}
 	
 	@Override
@@ -53,11 +52,6 @@ public class PlayerDialogGraphicView extends JPanel implements ActionListener {
 		for (int i = 0; i < players.length; i++) {
 			players[i] = inputs[i].getText();
 		}
-	}
-
-	public void initGame(StartController startController) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }
