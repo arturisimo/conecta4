@@ -15,18 +15,18 @@ state model {
 
 state model.view #ECEA58 {
 	
-	state conecta4.modelview #ECEA58: Desacoplar Vista utilizando Console.\nVista tiene el control de ejecucion de flujo de ejecucion.
-
-	state conecta4.mv.swing #ECEA58: 2 Modos de vista: Console y Graphic(swing).
+	state conecta4.modelview #ECEA58: Desacoplar Vista utilizando Console.\nVista tiene el control de ejecucion de flujo de ejecucion.\n Patron Singleton
+	
+	state conecta4.mv.swing #ECEA58: 2 Modos de vista: Console y Graphic(swing). \n Factory method vs Template method
 
 	conecta4.modelview --> conecta4.mv.swing
 }
 
 state model.view.controller #AF9EAF {
 	
-	state conecta4.mvc #AF9EAF: Capa Controller para acceder al Modelo\n. Vista > Controller > Model
+	state conecta4.mvc #AF9EAF: Capa Controller para acceder al Modelo\n. Vista > Controller > Model. \n Patron Facade
 
-	state conecta4.mvc.ioc #AF9EAF: Inversion del control de flujo de ejecucion pasa de la vista a los controladores
+	state conecta4.mvc.ioc #AF9EAF: Inversion del control de flujo de ejecucion pasa de la vista a los controladores \n Patron visitor con double dispatching
 
 
 	conecta4.mvc --> conecta4.mvc.ioc
