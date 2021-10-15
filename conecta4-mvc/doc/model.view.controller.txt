@@ -36,7 +36,11 @@ package view {
 
 package controller {
 	
-	class Logic
+	class Logic {
+		PlayController: playController
+    	ResumeController: resumeController
+    	StartController: startController
+	}
 	note left of [Logic] : "Patron fachada"
 	
 
@@ -54,9 +58,6 @@ package controller {
 	
 	abstract class Controller {
 		Conecta4: game
-		PlayController: playController
-    	ResumeController: resumeController
-    	StartController:startController
 	}
 }
 
