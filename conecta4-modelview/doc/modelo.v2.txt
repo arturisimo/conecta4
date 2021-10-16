@@ -2,88 +2,96 @@
 
 top to bottom direction
 
-App *--> GameView
-GameView *--> Conecta4
-GameView *-down-> BoardView
-
-Conecta4 *--> Board
-Conecta4 *--> "2" Player
-Conecta4 o--> "0..1" Winner
-GameView -right-> Console
-BoardView --> Board
-BoardView -left-> Console
-Console --> Console
-note right of [Console] : "Console tiene una unica \ninstancia de acceso global:\n Console.getInstance()"
-
-Player *--> "16" Colour
-Winner -up-|> Player
-
-Board *--> "32" Hole
-
-Hole o--> "0..1" Colour
-
 
 class App{
 	main()
 }
 
-class GameView{
-	game: Conecta4
-	init()
-	play()
-	resume()
-}
 
-class Conecta4 {
-	board: Board
-	player: Player[]
-	winner: Optional<Player>
-	play()
-}
+package view {
+	
+	App *--> GameView
 
-class BoardView {
-	print()
-}
-
-class Board {
-	hueco: Hole[]
-	putPiece()
-	getColumn()
-	getRow()
-}
+	GameView *-down-> BoardView
+	Console --> Console
+	note top of [Console] : "Console tiene una unica \ninstancia de acceso global:\n Console.getInstance()"
 
 
-class Line{
-	isConecta4()
-}
-Board *--> Line
-
-class Console{
-	BufferedReader: bufferedReader
-	-Console:instance
-	getInstance()
-	readLine()
-	readIntInRange()
-	println()
-	print()
+	class GameView{
+		game: Conecta4
+		init()
+		play()
+		resume()
 	}
-class Winner
 
-class Player {
-	pieces: List<Colour>
-	name: String
-	colour: Colour
-	getPiece()
+	class BoardView {
+		print()
+	}
+	class Console{
+		BufferedReader: bufferedReader
+		-Console:instance
+		getInstance()
+		readLine()
+		readIntInRange()
+		println()
+		print()
+	}
 }
 
-class Hole {
-	coordinate: Integer[]
-	piece: Optional<Colour>
-	hasColour()
-}
+package model {
+	
+	GameView *--> Conecta4
+	Conecta4 *--> Board
+	Conecta4 *--> "2" Player
+	Conecta4 o--> "0..1" Winner
+	GameView -right-> Console
+	BoardView --> Board
+	BoardView -left-> Console
+	
+	Player *--> "16" Colour
+	Winner -up-|> Player
 
-enum Colour {
-	O,X
-}
+	Board *--> "32" Hole
 
+	Hole o--> "0..1" Colour
+
+	class Conecta4 {
+		board: Board
+		player: Player[]
+		winner: Optional<Player>
+		play()
+	}
+
+	class Board {
+		hueco: Hole[]
+		putPiece()
+		getColumn()
+		getRow()
+	}
+
+
+	class Line{
+		isConecta4()
+	}
+	Board *--> Line
+
+	class Winner
+
+	class Player {
+		pieces: List<Colour>
+		name: String
+		colour: Colour
+		getPiece()
+	}
+
+	class Hole {
+		coordinate: Integer[]
+		piece: Optional<Colour>
+		hasColour()
+	}
+
+	enum Colour {
+		O,X
+	}
+}
 @enduml
